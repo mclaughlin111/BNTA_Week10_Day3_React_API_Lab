@@ -4,13 +4,15 @@ import PokemonList from '../components/PokemonList';
 
 const PokemonContainer = () => {
 
-const [pokemons, setPokemons] = useState([]);
+const [pokemons, setPokemons] = useState(null);
     
 const fetchPokemon = async () => {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20")
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1292")
     const data = await response.json();
     setPokemons(data);
 };
+
+
 
 useEffect(() => {
     fetchPokemon();
@@ -21,9 +23,9 @@ useEffect(() => {
 <>
 <h1>Search The Pokémon! API</h1>
 <PokemonSearch/>
-<PokemonList pokemons={pokemons}/>
+{pokemons ? <PokemonList pokemons={pokemons} /> : <p>"Loading"</p>}
 </>
     );
 }
- 
+
 export default PokemonContainer;
