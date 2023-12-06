@@ -4,13 +4,16 @@ import PokemonList from '../components/PokemonList';
 
 const PokemonContainer = () => {
 
+const[pokemonsNameUrls, setPokemonsNameUrls] = useState(null);
 const [pokemons, setPokemons] = useState(null);
+
+
     
 // fetches the pokemon. Returns the list of pokemon which each have a name and a url for extra details.
 const fetchPokemon = async () => {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5") // testing on 5 pokemon at a time. Dont want to ddos.
     const data = await response.json();
-    setPokemons(data.results);
+    setPokemonsNameUrls(data.results);
 };
 
 // singular request to get the details of a pokemon via their extra details url which is received in from the fetchpokemon function.
@@ -23,12 +26,12 @@ const fetchPokemonDetails = async (pokemonUrl) => {
 // uses promise.all which takes in an array of promises and will fail if any one of the promises fail. 
 // The promises are individual requests for each pokemon which are created from doing pokemons.map
 const fetchAllPokemonDetails = async () => {
-    if (!pokemons) return; // make sure that the pokemons state is not null before continuing.
+    if (!pokemonsNameUrls) return; // make sure that the pokemons state is not null before continuing.
 
-    const detailedPokemonList = await Promise.all(
-        pokemons.map(async (pokemon) => fetchPokemonDetails(pokemon.url))
+    const detailedPokemons = await Promise.all(
+        pokemonsNameUrls.map(async (pokemon) => fetchPokemonDetails(pokemon.url))
     );
-    return detailedPokemonList.filter(Boolean);
+    return detailedPokemons.filter(Boolean);
 }
 
 
@@ -42,9 +45,10 @@ useEffect(() => {
     const fetchData = async () => {
         const details = await fetchAllPokemonDetails();
         console.log('fetched details:', details);
+        setPokemons(details);
     };
     fetchData();
-}, [pokemons]);
+}, [pokemonsNameUrls]);
 
 
     return (
