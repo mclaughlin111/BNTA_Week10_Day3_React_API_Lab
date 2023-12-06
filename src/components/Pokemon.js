@@ -1,8 +1,12 @@
 const Pokemon = ({pokemon}) => {
 
-    const requestPokemonDetails = pokemon.url; // Pokemon info URL
+// console.log(pokemon)
 
-    return (<h3>{pokemon.name}</h3>);
+    return (
+    <div>
+    <h3>{pokemon.name}</h3>
+    {/* {<img src={pokemon.sprites.front_default}></img>} */}
+    </div>);
 }
  
 export default Pokemon;
