@@ -1,4 +1,5 @@
-# Getting Started with Create React App
+# Pokemon Search
+![Pokémon API React Lab](https://github.com/mclaughlin111/BNTA_Week10_Day3_React_API_Lab/assets/47330113/455f6730-2b5b-4fb4-8fa2-d1f109a08732)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
