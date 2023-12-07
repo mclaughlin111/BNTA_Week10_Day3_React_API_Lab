@@ -102,8 +102,8 @@ const Pokemon = ({ pokemon }) => {
 
     <ThemeProvider theme={customTheme}>
     
-    <Grid item xs={6} sm={4} md={2} >
-    <StyledCard sx={{ maxWidth: 200 }}>
+    <Grid item xs={5} sm={4} md={2} >
+    <StyledCard >
         <CardMedia
           sx={{ height: 175 }}
           image={pokemon.sprites.front_default} // link to image
