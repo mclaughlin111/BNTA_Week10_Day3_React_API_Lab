@@ -105,7 +105,7 @@ const Pokemon = ({ pokemon }) => {
     <Grid item xs={5} sm={4} md={2} >
     <StyledCard >
         <CardMedia
-          sx={{ height: 175 }}
+          sx={{ height: 250 }}
           image={pokemon.sprites.front_default} // link to image
           title={capitalise(pokemon.name)}
         />
