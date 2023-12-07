@@ -6,6 +6,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+
 
 const Pokemon = ({ pokemon }) => {
   // console.log(pokemon)
@@ -18,14 +21,12 @@ const Pokemon = ({ pokemon }) => {
   pokemonName = pokemonName.slice(1); //
   pokemonName = firstLetter + pokemonName;
 
-  const TypesList = types.map((typeData, index) => (
-    <li className="list-group-item" key={index}>
-      {typeData.type.name}
-    </li>
+  const Types = types.map((typeData, index) => (
+    <ListItem key={index}>{typeData.type.name}</ListItem>
   ));
 
   return (
-    <Grid item xs={6}>
+    <Grid item xs={6} sm={4} md={2} >
       <Card sx={{ maxWidth: 200 }}>
         <CardMedia
           sx={{ height: 200 }}
@@ -36,6 +37,10 @@ const Pokemon = ({ pokemon }) => {
           <Typography gutterBottom variant="h5" component="div">
             {pokemonName}
           </Typography>
+          <List dense={true} >
+          {Types}
+          </List>
+          <hr />
           <Typography variant="body4" color="text.secondary">
             Weight:
           </Typography>
@@ -52,7 +57,7 @@ const Pokemon = ({ pokemon }) => {
         </CardContent>
         <CardActions>
           <Button size="small">PokePage</Button>
-          <Button size="small">Expand</Button>
+          <Button size="small">Show Stats</Button>
         </CardActions>
       </Card>
     </Grid>
