@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import PokemonSearch from "../components/PokemonSearch";
 import PokemonList from '../components/PokemonList';
+import PokemonNavbar from '../components/PokemonNavbar';
 
 const PokemonContainer = () => {
 
@@ -53,8 +54,7 @@ useEffect(() => {
 
     return (
 <section className='pokemonContainer'>
-<h1>Search The Pokémon! API</h1>
-<PokemonSearch/>
+<PokemonNavbar />
 {(pokemons) ? <PokemonList pokemons={pokemons} /> : <p>"Loading"</p>}
 </section>
     );
