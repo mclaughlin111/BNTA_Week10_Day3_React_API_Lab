@@ -11,7 +11,7 @@ const [pokemons, setPokemons] = useState(null);
     
 // fetches the pokemon. Returns the list of pokemon which each have a name and a url for extra details.
 const fetchPokemon = async () => {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=12") // testing on 5 pokemon at a time. Dont want to ddos.
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=24") // testing on 5 pokemon at a time. Dont want to ddos.
     const data = await response.json();
     setPokemonsNameUrls(data.results);
 };
@@ -24,7 +24,7 @@ const fetchPokemonDetails = async (pokemonUrl) => {
 }
 
 // uses promise.all which takes in an array of promises and will fail if any one of the promises fail. 
-// The promises are individual requests for each pokemon which are created from doing pokemons.map
+// The promises are individual requests for each pokemon which are created from doing pokemonsNamesUrl.map
 const fetchAllPokemonDetails = async () => {
     if (!pokemonsNameUrls) return; // make sure that the pokemons state is not null before continuing.
 
