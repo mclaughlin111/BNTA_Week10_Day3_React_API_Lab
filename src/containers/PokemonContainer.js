@@ -52,7 +52,7 @@ useEffect(() => {
 
 
     return (
-<div className='container'>
+<div>
 <h1>Search The Pokémon! API</h1>
 <PokemonSearch/>
 {(pokemons) ? <PokemonList pokemons={pokemons} /> : <p>"Loading"</p>}

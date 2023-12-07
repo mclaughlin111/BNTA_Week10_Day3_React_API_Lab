@@ -1,5 +1,5 @@
 import Pokemon from "./Pokemon";
-
+import Grid from "@mui/material/Grid";
 
 const PokemonList = ({ pokemons }) => {
 
@@ -11,11 +11,12 @@ const PokemonList = ({ pokemons }) => {
   });
 
   return (
-  <div className="container">
-    <div className="row">
+
+    <Grid container spacing={1}>
         {pokemonComponents}
-    </div>
-  </div>
+    </Grid> 
+
+
   );
 };
 
