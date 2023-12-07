@@ -54,7 +54,7 @@ useEffect(() => {
 
     return (
 <section className='pokemonContainer'>
-<PokemonNavbar />
+{(pokemons) ? <PokemonNavbar pokemons={pokemons} /> : <p>"Loading"</p>}
 {(pokemons) ? <PokemonList pokemons={pokemons} /> : <p>"Loading"</p>}
 </section>
     );

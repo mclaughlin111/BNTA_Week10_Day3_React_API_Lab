@@ -73,9 +73,6 @@ const Pokemon = ({ pokemon }) => {
 `;
 
 
-
-
-
   // console.log(pokemon)
   // console.log(pokemon.types)
   const { types } = pokemon;
@@ -86,19 +83,19 @@ const Pokemon = ({ pokemon }) => {
   // pokemonName = pokemonName.slice(1); //
   // pokemonName = firstLetter + pokemonName;
 
-  const getFirstLetter = (name) => {
+  const capitalise = (name) => {
     let nameFirstLetter = name[0].toUpperCase();
     name = name.slice(1);
     name = nameFirstLetter + name;
     return name;
   }
 
-  getFirstLetter(pokemon.name)
+
 
   const Types = types.map((typeData, index) => (
     
 
-    <ListItem key={index}>{getFirstLetter(typeData.type.name)}</ListItem>
+    <ListItem key={index}>{capitalise(typeData.type.name)}</ListItem>
   ));
 
   return (
@@ -110,11 +107,11 @@ const Pokemon = ({ pokemon }) => {
         <CardMedia
           sx={{ height: 175 }}
           image={pokemon.sprites.front_default} // link to image
-          title={getFirstLetter(pokemon.name)}
+          title={capitalise(pokemon.name)}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {getFirstLetter(pokemon.name)}
+            {capitalise(pokemon.name)}
           </Typography>
           <List dense={true} >
           {Types}
