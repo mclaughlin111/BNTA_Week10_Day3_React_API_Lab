@@ -11,7 +11,7 @@ const [pokemons, setPokemons] = useState(null);
     
 // fetches the pokemon. Returns the list of pokemon which each have a name and a url for extra details.
 const fetchPokemon = async () => {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=5") // testing on 5 pokemon at a time. Dont want to ddos.
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=12") // testing on 5 pokemon at a time. Dont want to ddos.
     const data = await response.json();
     setPokemonsNameUrls(data.results);
 };
@@ -52,11 +52,11 @@ useEffect(() => {
 
 
     return (
-<>
+<div className='container'>
 <h1>Search The Pokémon! API</h1>
 <PokemonSearch/>
 {(pokemons) ? <PokemonList pokemons={pokemons} /> : <p>"Loading"</p>}
-</>
+</div>
     );
 }
 

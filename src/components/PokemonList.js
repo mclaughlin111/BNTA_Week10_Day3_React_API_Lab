@@ -4,13 +4,19 @@ import Pokemon from "./Pokemon";
 const PokemonList = ({ pokemons }) => {
 
 
-  const pokemonComponents = pokemons.map((pokemon, index) => {
+  const pokemonComponents = pokemons.map((pokemon) => {
     // console.log(pokemon);
-    return <Pokemon key={index} pokemon={pokemon} />;
+    return <Pokemon key={pokemon.id} pokemon={pokemon} />;
 
   });
 
-  return <>{pokemonComponents}</>;
+  return (
+  <div className="container">
+    <div className="row">
+        {pokemonComponents}
+    </div>
+  </div>
+  );
 };
 
 
