@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 //import UI components
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -17,6 +19,15 @@ import Avatar from '@mui/material/Avatar';
 
 
 const Pokemon = ({ pokemon }) => {
+
+  const [showStats, setShowStats] = useState(false);
+
+  const handleShowStatsClick = () => {
+    setShowStats(!showStats);
+  };
+
+
+
 
   //Stats Bar Style
   const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -150,13 +161,26 @@ const Pokemon = ({ pokemon }) => {
             #{pokemon.id}
           </Typography>
           <hr />
-          HP<BorderLinearProgress variant="determinate" value={pokemon.stats[0].base_stat} />
-          Attack<BorderLinearProgress variant="determinate" value={pokemon.stats[1].base_stat} />
-          Defense<BorderLinearProgress variant="determinate" value={pokemon.stats[2].base_stat} />
-          Speed<BorderLinearProgress variant="determinate" value={pokemon.stats[5].base_stat} />
+
+          {showStats && (
+              <div
+              style={{
+                opacity: showStats ? 1 : 0,
+                height: showStats ? 'auto' : 0,
+                overflow: 'hidden',
+                transition: 'opacity 1s, height 1s',
+              }}
+              >
+                HP<BorderLinearProgress variant="determinate" value={pokemon.stats[0].base_stat} />
+                Attack<BorderLinearProgress variant="determinate" value={pokemon.stats[1].base_stat} />
+                Defense<BorderLinearProgress variant="determinate" value={pokemon.stats[2].base_stat} />
+                Speed<BorderLinearProgress variant="determinate" value={pokemon.stats[5].base_stat} />
+              </div>
+          )}
+          
         </CardContent>
         <CardActions>
-          <Button size="small" fullWidth={true}>Show Stats</Button>
+          <Button size="small" fullWidth={true} onClick={handleShowStatsClick}>Show Stats</Button>
         </CardActions>
       </StyledCard>
     </Grid>
