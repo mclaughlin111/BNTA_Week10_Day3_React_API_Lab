@@ -8,14 +8,32 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress'; // for progress bar
 
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import { red, common } from '@mui/material/colors';
+import Box from '@mui/material/Box'; // for progress bar
 import Avatar from '@mui/material/Avatar';
 
 
 const Pokemon = ({ pokemon }) => {
 
+  //Stats Bar Style
+  const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+    height: 10,
+    borderRadius: 1,
+    [`&.${linearProgressClasses.colorPrimary}`]: {
+      backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+      height: 3,
+    },
+    [`& .${linearProgressClasses.bar}`]: {
+      borderRadius: 1,
+      height: 3,
+      backgroundColor: theme.palette.mode === 'light' ? '#000' : '#308fe8',
+    },
+    
+  }));
+  
 
   const customTheme = createTheme({
     palette: {
@@ -39,13 +57,14 @@ const Pokemon = ({ pokemon }) => {
       sharp: 'cubic-bezier(0.4, 0, 0.6, 1)',
       }
     },
+  
     transitions: {
       duration: {
         shortest: 150,
         shorter: 200,
         short: 250,
         // most basic recommended timing
-        standard: 500,
+        standard: 300,
         // this is to be used in complex animations
         complex: 375,
         // recommended when something is entering screen
@@ -67,7 +86,7 @@ const Pokemon = ({ pokemon }) => {
   })};
   &:hover {
     background-color: ${theme.palette.secondary.main};
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
   `}
 `;
@@ -130,6 +149,11 @@ const Pokemon = ({ pokemon }) => {
             {" "}
             #{pokemon.id}
           </Typography>
+          <hr />
+          HP<BorderLinearProgress variant="determinate" value={pokemon.stats[0].base_stat} />
+          Attack<BorderLinearProgress variant="determinate" value={pokemon.stats[1].base_stat} />
+          Defense<BorderLinearProgress variant="determinate" value={pokemon.stats[2].base_stat} />
+          Speed<BorderLinearProgress variant="determinate" value={pokemon.stats[5].base_stat} />
         </CardContent>
         <CardActions>
           <Button size="small" fullWidth={true}>Show Stats</Button>
